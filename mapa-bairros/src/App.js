@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
+import Header from './components/header'; 
+import Sidebar from './components/sidebar'; 
+
 
 function App() {
   return (
-    <div className="jumbotron">
-  <h1 className="display-4">Hello, world!</h1>
+    <div>
+ <Header></Header>
+    <Sidebar></Sidebar>
+    </div>
+   
 
-    <div className="container">
-    <h2>React CRUD Tutorial</h2>
-    </div>
-    </div>
-  );
+   );
 }
 
 export default App;
