@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
                         <SidebarItem label="Fogo de Chão" lat="-22.9490574" lng="-43.180057"></SidebarItem>
                         <SidebarItem label="Clube Guanabara" lat="-22.8172918" lng="-43.2093807" ></SidebarItem>
                         <SidebarItem label="Sede de General Severiano(Botafogo de Futebol e Regatas)" lat="-22.9548411" lng="-43.1779454" ></SidebarItem>
-                        <SidebarItem label="Espaço Itaú de Cinema" lat="-22.9450122" lng="-43.182563" ></SidebarItem>
+                        <SidebarItem label="Espaço Itaú de Cinema" lat="-22.9450122" lng="-43.182563w" ></SidebarItem>
 
 
 
