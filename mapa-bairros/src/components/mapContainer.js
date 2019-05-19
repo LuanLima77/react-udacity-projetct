@@ -15,7 +15,10 @@ export class MapContainer extends Component {
   }
 
   componentDidMount(){
-    console.log("INICIANDO COMPONENTE...", PLACES);
+    PLACES.forEach(place => {
+      console.log("THIS IS A PLACE", place);
+      
+    });
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -35,19 +38,29 @@ onClose = props => {
 };
   render() {
     return (
+
+    
       <Map
         google={this.props.google}
-        zoom={14}
+        zoom={15}
         style={mapStyles}
         initialCenter={{
-         lat: -1.2884,
-         lng: 36.8233
+         lat: -22.9475308,
+         lng: -43.1834283
+
         }}
       >
-      <Marker onClick={this.onMarkerClick}
-      name={'Kenyatta International Convention Centre'}>
+     {PLACES.map((place, i) =>
+  <Marker position = {{
+    lat: place.latitude,
+    lng: place.longitude
 
-      </Marker>
+   }}
+   name = {place.label}
+   onClick={this.onMarkerClick}
+ >
+ </Marker>        )}
+     
 
       <InfoWindow
           marker={this.state.activeMarker}
