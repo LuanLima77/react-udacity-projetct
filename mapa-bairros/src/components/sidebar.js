@@ -7,9 +7,9 @@ export default class Sidebar extends Component {
             <div className="wrapper">
                 <nav id="sidebar">
                     <div className="sidebar-header">
-                        <h3>Principais Atrações</h3>
+                        <h3 class="sidebar-title">Principais Atrações</h3>
                     </div>
-
+                    <button class="openbtn" onclick="openNav()">☰ Locais</button>
                     <ul className="list-unstyled components">
 
                         <SidebarItem label="Botafogo Praia Shopping" lat="-22.9475308" lng="-43.1834283" ></SidebarItem>
