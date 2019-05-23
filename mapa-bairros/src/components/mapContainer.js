@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper,  InfoWindow, Marker } from 'google-maps-react';
 import {PLACES} from '../resource/places';
+import { FourSquareAPI } from '../endpoint/FourSquareAPI';
 const mapStyles = {
   width: '100%',
   height: '100%'
@@ -17,6 +18,9 @@ export class MapContainer extends Component {
   componentDidMount(){
     PLACES.forEach(place => {
       console.log("THIS IS A PLACE", place);
+      FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).
+      then(data => console.log('then do then'));
+
       
     });
   }
