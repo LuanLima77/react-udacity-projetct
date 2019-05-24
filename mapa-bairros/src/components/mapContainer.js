@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper,  InfoWindow, Marker } from 'google-maps-react';
 import {PLACES} from '../resource/places';
 import { FourSquareAPI } from '../endpoint/FourSquareAPI';
-const mapStyles = {
-  width: '100%',
-  height: '100%',
-  left: '30%'
-};
+
 
 export class MapContainer extends Component {
 
@@ -19,8 +15,8 @@ export class MapContainer extends Component {
   componentDidMount(){
     PLACES.forEach(place => {
       console.log("THIS IS A PLACE", place);
-      FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId)
-      .then(data => console.log('then do then',data));
+     // FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId)
+      //.then(data => console.log('then do then',data));
 
       
     });
@@ -45,10 +41,9 @@ onClose = props => {
     return (
 
     
-      <Map
+      <Map id="mapContainer"
         google={this.props.google}
         zoom={15}
-        style={mapStyles}
         initialCenter={{
          lat: -22.9475308,
          lng: -43.1834283

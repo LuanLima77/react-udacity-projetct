@@ -59,6 +59,7 @@
   background-color: #95afc0;
 }
 
+
 #header
 {
   height: 15%; 
@@ -70,6 +71,14 @@
   background-color: #dff9fb; 
   overflow-x: hidden; 
   padding-top: 20px;
+}
+
+#mapContainer
+{
+  width: 100%;
+  height: 100%;
+  left: 30%;
+  background-color: yellow; 
 }
 
 #sidebar
@@ -84,12 +93,31 @@
   overflow-x: hidden; 
   padding-top: 20px;
   transition: 0.5s;
-
-
+  
 }
+
+#sidebar.openSidebar
+{
+  background-color: pink;
+}
+
 
 @media screen and (max-height: 450px) {
   #sidebar {padding-top: 15px;}
   #sidebar a {font-size: 14px;}
+}
+
+@media screen and (max-width: 450px) {
+  
+  #sidebar
+  {
+    display: none;
+  }
+
+  #mapContainer
+  {
+    left: 0%;
+
+  }
 }
 
