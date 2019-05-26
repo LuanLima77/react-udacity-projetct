@@ -8,6 +8,19 @@
   pointer-events: none;
 }
 
+#header
+{
+  height: 20%; 
+  width: 75%; 
+  position: absolute; 
+  z-index: 1; 
+  top: 0; 
+  left: 25%;
+  background-color: #dff9fb; 
+  padding-top: 2%;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -33,9 +46,7 @@
 }
 
 
-.sidebar-title{
-  color: #dff9fb;
-}
+
 .header-title
 {
  color: #130f40;
@@ -46,7 +57,47 @@
  color: #535c68;
 }
 
-.openbtn {
+.sidebar
+{
+  height: 100%; 
+  width: 25%; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+ 
+  background-color: #30336b; 
+  overflow-x: hidden; 
+  padding-top: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  transition: 0.5s;
+  
+}
+
+.sidebar-title{
+  color: #dff9fb;
+
+}
+.sidebar-header, .sidebar-content
+{
+ padding-left: 2%;
+ padding-right : 2%;   
+}
+
+/**
+Toggle que controla a exibicao do sidebar
+*/
+.sidebar.openSidebar
+{
+  
+  display: block;
+  
+}
+
+
+
+.openBtn {
   font-size: 20px;
   cursor: pointer;
   background-color: #dff9fb;
@@ -54,62 +105,45 @@
   padding: 10px 15px;
   border: none;
 }
-
+.close-btn
+{
+  font-size: 34px;
+  color: #dff9fb;
+}
 .openbtn:hover {
   background-color: #95afc0;
 }
 
 
-#header
-{
-  height: 15%; 
-  width: 100%; 
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
-  left: 30%;
-  background-color: #dff9fb; 
-  overflow-x: hidden; 
-  padding-top: 20px;
-}
+
 
 #mapContainer
 {
   width: 100%;
-  height: 100%;
-  left: 30%;
-  background-color: yellow; 
+  height: 80%;
+  left: 25%;
 }
 
-#sidebar
+#fakeMap
 {
-  height: 100%; 
-  width: 30%; 
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
-  left: 0;
-  background-color: #30336b; 
-  overflow-x: hidden; 
-  padding-top: 20px;
-  transition: 0.5s;
-  
+  width: 75%;
+  left: 25%;
+  top: 20%;
+  height: 80%;
+  position: absolute;
+  background-color: yellow;
 }
 
-#sidebar.openSidebar
-{
-  background-color: pink;
-}
 
 
 @media screen and (max-height: 450px) {
-  #sidebar {padding-top: 15px;}
-  #sidebar a {font-size: 14px;}
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 14px;}
 }
 
 @media screen and (max-width: 450px) {
   
-  #sidebar
+  .sidebar
   {
     display: none;
   }
@@ -119,5 +153,14 @@
     left: 0%;
 
   }
+}
+
+@media screen and (min-width: 451px) {
+  
+  .close-btn
+  {
+    display: none;
+  }
+
 }
 
