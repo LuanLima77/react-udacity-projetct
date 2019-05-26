@@ -10,12 +10,14 @@ import FakeMap from './fakeMap';
 function App() {
 
 //    <MapContainer markers = "{places}"></MapContainer>
+//    <FakeMap></FakeMap>
+
 
   return (
     <div>
  <Header></Header>
     <Sidebar></Sidebar>
-    <FakeMap></FakeMap>
+    <MapContainer markers = "{places}"></MapContainer>    
     </div>
    
    );

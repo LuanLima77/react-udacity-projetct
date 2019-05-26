@@ -7,7 +7,7 @@ export  const PLACES = [
     new Place("4b05872af964a520008322e3",-22.9574369,-43.1771566,"Shopping Rio Sul"),
     new Place("4e027290483bb38cf0efddf8",-22.9490574,-43.180057,"Fogo de Chão"),
     new Place("4bd3db3b41b9ef3bd63101e6",-22.9498815, -43.1795691,"Clube Guanabara"),
-    new Place("4bcc763cfb84c9b6ea5f203e",-22.9548411,-43.1779454,"Sede de General Severiano(Botafogo de Futebol e Regatas)"),
+    new Place("4bcc763cfb84c9b6ea5f203e",-22.9548411,-43.1779454,"General Severiano(Botafogo de Futebol e Regatas)"),
     new Place("4b058729f964a520cc8222e3",-22.9450122, -43.182563,"Espaço Itaú de Cinema"),
 
 

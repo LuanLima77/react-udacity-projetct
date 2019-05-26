@@ -10,14 +10,16 @@
 
 #header
 {
-  height: 20%; 
+  height: auto; 
   width: 75%; 
   position: absolute; 
+
   z-index: 1; 
   top: 0; 
   left: 25%;
   background-color: #dff9fb; 
   padding-top: 2%;
+  
 }
 
 
@@ -50,6 +52,7 @@
 .header-title
 {
  color: #130f40;
+ vertical-align: middle;
 }
 
 .text
@@ -79,10 +82,15 @@
   color: #dff9fb;
 
 }
+
+.sidebarLink
+{
+  padding-bottom: 20px;
+}
 .sidebar-header, .sidebar-content
 {
  padding-left: 2%;
- padding-right : 2%;   
+ padding-right : 2%; 
 }
 
 /**
@@ -92,6 +100,7 @@ Toggle que controla a exibicao do sidebar
 {
   
   display: block;
+  width:40%;
   
 }
 
@@ -139,12 +148,10 @@ Toggle que controla a exibicao do sidebar
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 14px;}
-}
 
-@media screen and (max-width: 450px) {
-  
   .sidebar
   {
+    width: 40%;
     display: none;
   }
 
@@ -152,6 +159,12 @@ Toggle que controla a exibicao do sidebar
   {
     left: 0%;
 
+  }
+
+  #header
+  {
+    left: 0;
+    width: 100% ;
   }
 }
 

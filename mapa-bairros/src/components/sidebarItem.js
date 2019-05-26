@@ -6,8 +6,8 @@ export default class SidebarItem extends Component {
         return (
 
         
-                        <li>
-                            <a href="#">{this.props.label}</a>
+                        <li className ="sidebarLink">
+                            <a  href="#">{this.props.label}</a>
                         </li>
                        
                    
