@@ -10,14 +10,15 @@ export default class Header extends Component {
 	render() {
 		return (
 			<div className="jumbotron" id="header">
+            	<button className="openBtn" onClick={() => this.openNav()}>
+					☰ Locais
+				</button>
 				<h1 className="header-title">Mapa de Botafogo</h1>
 				<p className="text">
 					Um mapa completo com as principais atrações do bairro Botafogo, no Rio
 					de Janeiro
 				</p>
-				<button className="openBtn" onClick={() => this.openNav()}>
-					☰ Locais
-				</button>
+			
 			</div>
 		);
 	}

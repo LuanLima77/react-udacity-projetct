@@ -113,6 +113,9 @@ Toggle que controla a exibicao do sidebar
   color: #130f40;
   padding: 10px 15px;
   border: none;
+  position: relative;
+  top: 0%;
+  left: 0%;
 }
 .close-btn
 {
@@ -170,10 +173,11 @@ Toggle que controla a exibicao do sidebar
 
 @media screen and (min-width: 451px) {
   
-  .close-btn
+  .close-btn, .openBtn
   {
     display: none;
   }
+
 
 }
 
