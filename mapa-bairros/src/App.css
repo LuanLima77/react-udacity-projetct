@@ -145,7 +145,7 @@ Toggle que controla a exibicao do sidebar
 
 
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 14px;}
 

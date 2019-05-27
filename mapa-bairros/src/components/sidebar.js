@@ -2,39 +2,21 @@ import React, { Component } from "react";
 import SidebarItem from "./sidebarItem";
 
 export default class Sidebar extends Component {
-
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			sidebarCssClass: "sidebar"
-		};
-		this.openNav = this.openNav.bind(this);
-
-
+		console.log("HEADER", props);
+		this.closeNav = this.props.closeNav.bind(this);
 	}
+	
 
-
-	openNav() {
-		console.log("TROCANDO CSS..");
-		if (this.state.sidebarCssClass == "sidebar") {
-			this.setState({ sidebarCssClass: 'sidebar openSidebar' });
-
-		} else {
-			this.setState({ sidebarCssClass: 'sidebar' });
-
-		}
-
-	}
 	render() {
 		return (
 			<div className="wrapper">
-				<button className="openBtn" onClick={() => this.openNav()}>
-					☰ Locais
-					</button>
-				<nav className={this.state.sidebarCssClass}>
+
+				<nav className= {this.props.cssClass}>
 					<div className="sidebar-header">
-							<button type="button"  onClick={() => this.openNav()} className="close close-btn" aria-label="Close">
+							<button type="button"   onClick={() => this.closeNav()}
+							        className="close close-btn" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>		
 						<h3 className="sidebar-title">Principais Atrações</h3>
