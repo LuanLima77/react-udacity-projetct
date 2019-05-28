@@ -3,6 +3,7 @@ export default class Place
      latitude;
      longitude;
      foursquareVenueId;
+     label;
 
      constructor(foursquareVenueId,latitude, longitude, label)
      {

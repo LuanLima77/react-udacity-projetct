@@ -1,7 +1,7 @@
 import Place from '../model/place';
 
 
-export  const PLACES = [
+export  var PLACES = [
     new Place("55b106c6498ef5a321195d40",-22.9475308,-43.1834283,"Botafogo Praia Shopping"),
     new Place("4b7147fcf964a520413f2de3",-22.9504551,-43.1806529,"Centro Empresarial Mourisco"),
     new Place("4b05872af964a520008322e3",-22.9574369,-43.1771566,"Shopping Rio Sul"),

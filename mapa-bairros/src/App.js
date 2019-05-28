@@ -19,9 +19,22 @@ export class App extends Component {
 			markers: PLACES
 		};
 		this.openNav = this.openNav.bind(this);
+		this.handleChangeFilter = this.handleChangeFilter.bind(this);
 
 
 	}
+
+	handleChangeFilter(event)
+	{
+      var filter = event.target.value;
+      if(filter.length)
+      {
+		var markers = this.state.markers;
+		console.log(markers);
+        var filteredMarkers = markers.filter(marker => marker.label.includes(filter));
+        this.setState({ markers: filteredMarkers});
+      }
+    }
 
 
    openNav() {
@@ -39,8 +52,8 @@ export class App extends Component {
 	render() {
 		return (
 			<div>
-				<Header openNav = {this.openNav} />
-				<Sidebar closeNav = {this.openNav} cssClass = {this.state.cssClass} />
+				<Header handleChangeFilter={this.handleChangeFilter} openNav = {this.openNav} markers={this.state.markers}/>
+				<Sidebar   closeNav = {this.openNav} cssClass = {this.state.cssClass} />
 				
 				<MapContainer markers={this.state.markers} />
 			</div>

@@ -18,7 +18,7 @@ export default class Header extends Component {
 					Um mapa completo com as principais atrações do bairro Botafogo, no Rio
 					de Janeiro
 				</p>
-				<Search></Search>
+				<Search handleChangeFilter={this.props.handleChangeFilter} markers={this.props.markers} ></Search>
 
 			
 			</div>
