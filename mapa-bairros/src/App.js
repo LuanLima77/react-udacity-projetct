@@ -3,6 +3,8 @@ import "./App.css";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import MapContainer from "./components/mapContainer";
+import { PLACES } from "./resource/places";
+
 import FakeMap from "./fakeMap";
 
 export class App extends Component {
@@ -13,7 +15,8 @@ export class App extends Component {
 		super(props);
 
 		this.state = {
-			cssClass: "sidebar"
+			cssClass: "sidebar",
+			markers: PLACES
 		};
 		this.openNav = this.openNav.bind(this);
 
@@ -22,7 +25,6 @@ export class App extends Component {
 
 
    openNav() {
-		console.log("TROCANDO CSS..");
 		if (this.state.cssClass === "sidebar") {
 			this.setState({ cssClass: 'sidebar openSidebar' });
 
@@ -33,12 +35,14 @@ export class App extends Component {
 
 	}
 
+
 	render() {
 		return (
 			<div>
 				<Header openNav = {this.openNav} />
 				<Sidebar closeNav = {this.openNav} cssClass = {this.state.cssClass} />
-				<MapContainer markers="{places}" />
+				
+				<MapContainer markers={this.state.markers} />
 			</div>
 		);
 	}

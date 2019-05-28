@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-import { PLACES } from "../resource/places";
 import { FourSquareAPI } from "../endpoint/FourSquareAPI";
 
 export class MapContainer extends Component {
@@ -11,7 +10,7 @@ export class MapContainer extends Component {
 	};
 
 	componentDidMount() {
-		PLACES.forEach(place => {
+		this.props.markers.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
         var venue = data.response.venue;
         console.log("VENUE", venue);
@@ -48,7 +47,7 @@ export class MapContainer extends Component {
 					lng: -43.1834283
 				}}
 			>
-				{PLACES.map((place, i) => (
+				{	this.props.markers.map((place, i) => (
 					<Marker
 						key={place.foursquareVenueId}
 						position={{
