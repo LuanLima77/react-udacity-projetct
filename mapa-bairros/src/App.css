@@ -60,6 +60,11 @@
  color: #535c68;
 }
 
+.picture
+{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
 .sidebar
 {
   height: 100%; 
@@ -125,7 +130,6 @@ Toggle que controla a exibicao do sidebar
 .openbtn:hover {
   background-color: #95afc0;
 }
-
 
 
 

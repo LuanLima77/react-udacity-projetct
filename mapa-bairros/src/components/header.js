@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import Search from "./search";
 
 export default class Header extends Component {
 	constructor(props) {
 		super(props);
-		console.log("HEADER", props);
 		this.openNav = this.props.openNav.bind(this);
 	}
 
@@ -18,6 +18,8 @@ export default class Header extends Component {
 					Um mapa completo com as principais atrações do bairro Botafogo, no Rio
 					de Janeiro
 				</p>
+				<Search></Search>
+
 			
 			</div>
 		);
