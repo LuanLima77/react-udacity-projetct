@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-import { FourSquareAPI } from "../endpoint/FourSquareAPI";
 
 export class MapContainer extends Component {
 	state = {
@@ -9,18 +8,7 @@ export class MapContainer extends Component {
 		selectedPlace: {}
 	};
 
-	componentDidMount() {
-		this.props.markers.forEach(place => {
-			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
-        var venue = data.response.venue;
-        console.log("VENUE", venue);
-        var photoUrl = FourSquareAPI.buildPictureUrl(venue);
-        console.log("URL DA FOTO", photoUrl);
-        
-			});
-		});
-	}
-
+	
 	onMarkerClick = (props, marker, e) =>
 		this.setState({
 			selectedPlace: props,
@@ -57,6 +45,7 @@ export class MapContainer extends Component {
 						name={place.label}
 						onClick={this.onMarkerClick}
 					/>
+					
 				))}
 
 				<InfoWindow
@@ -66,7 +55,8 @@ export class MapContainer extends Component {
 				>
 					<div>
 						<h4>{this.state.selectedPlace.name}</h4>
-            <img className ="picture" src="https://manairashopping.com/wp-content/uploads/2018/04/MG_85552.jpg" alt="Legenda da Imagem" height="200" width="250">
+			<img className ="picture" src= "teste" 
+			alt="Legenda da Imagem" height="200" width="250">
             </img>
 
 					</div>

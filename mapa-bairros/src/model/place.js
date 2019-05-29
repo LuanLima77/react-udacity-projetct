@@ -4,6 +4,7 @@ export default class Place
      longitude;
      foursquareVenueId;
      label;
+     pictureUrl
 
      constructor(foursquareVenueId,latitude, longitude, label)
      {

@@ -4,12 +4,11 @@ import Header from "./components/header";
 import Sidebar from "./components/sidebar";
 import MapContainer from "./components/mapContainer";
 import { PLACES } from "./resource/places";
+import { FourSquareAPI } from "./endpoint/FourSquareAPI";
 
-import FakeMap from "./fakeMap";
+
 
 export class App extends Component {
-	//    <MapContainer markers = "{places}"></MapContainer>
-   //    <FakeMap></FakeMap>
    
    constructor(props) {
 		super(props);
@@ -23,18 +22,45 @@ export class App extends Component {
 
 
 	}
+	componentDidMount() {
+		this.state.markers.forEach(place => {
+			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
+        var venue = data.response.venue;
+        var photoUrl = FourSquareAPI.buildPictureUrl(venue);
+		place.pictureUrl = photoUrl;
+		console.log("PLACE",place);
+        
+			});
+		});
+		console.log("PLACES WITH URL", this.state.markers);
+	}
+
+
 
 	handleChangeFilter(event)
 	{
+		console.log("FILTRANDO...");
       var filter = event.target.value;
       if(filter.length)
       {
-		var markers = this.state.markers;
-		console.log(markers);
-        var filteredMarkers = markers.filter(marker => marker.label.includes(filter));
+        var filteredMarkers = PLACES.filter(marker => marker.label.includes(filter));
         this.setState({ markers: filteredMarkers});
-      }
-    }
+	  }else
+	  {
+		  this.setState({markers : PLACES});
+	  }
+	}
+	
+	filterMap(term)
+	{
+		if(term)
+		{
+			var filteredMarker = PLACES.find(marker => marker.label.includes(term));
+			this.setState({ markers: filteredMarker});
+
+
+		}
+	}
 
 
    openNav() {
@@ -53,7 +79,7 @@ export class App extends Component {
 		return (
 			<div>
 				<Header handleChangeFilter={this.handleChangeFilter} openNav = {this.openNav} markers={this.state.markers}/>
-				<Sidebar   closeNav = {this.openNav} cssClass = {this.state.cssClass} />
+				<Sidebar filterMap  = {this.filterMap}  closeNav = {this.openNav} cssClass = {this.state.cssClass} />
 				
 				<MapContainer markers={this.state.markers} />
 			</div>
