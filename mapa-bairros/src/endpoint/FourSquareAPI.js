@@ -7,16 +7,23 @@ export class FourSquareAPI {
 
 
   static getPicturesByVenueId(venueId) {
-    return fetch(`${this.API_URL}${venueId}?client_id=${this.CLIENT_ID}&client_secret=${this.CLIENT_SECRET}&v=${this.V}`)
+
+    var requestUrl =`${this.API_URL}${venueId}?client_id=${this.CLIENT_ID}&client_secret=${this.CLIENT_SECRET}&v=${this.V}`;
+
+    return fetch(requestUrl)
       .then(response => response.json())
       .catch(error => console.log("Erro ao recuperar imagens do local!"))
   }
 
   static buildPictureUrl(venue)
   {
+    var pictureUrl = `${venue.bestPhoto.prefix}300x300${venue.bestPhoto.suffix}`;
+
+
+    console.log("URL GERADA", pictureUrl);
 
     if(venue)
-    return `${venue.prefix}/300x300/${venue.suffix}`;
+    return `${venue.bestPhoto.prefix}300x300${venue.bestPhoto.suffix}`;
 
 
   }

@@ -33,7 +33,12 @@ export default class Sidebar extends Component {
 					/>
 					
 				))}
-						
+
+		
+				<li className ="sidebarLink">
+                            <a  href="#" onClick={() => this.props.clearFilter()}
+                             >LIMPAR</a>
+                        </li>		
 					</ul>
 				</nav>
 			</div>

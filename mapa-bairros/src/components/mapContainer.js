@@ -55,7 +55,7 @@ export class MapContainer extends Component {
 				>
 					<div>
 						<h4>{this.state.selectedPlace.name}</h4>
-			<img className ="picture" src= "teste" 
+			<img className ="picture" src= {this.state.selectedPlace.pictureUrl} 
 			alt="Legenda da Imagem" height="200" width="250">
             </img>
 
