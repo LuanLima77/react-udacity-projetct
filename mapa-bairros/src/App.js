@@ -5,10 +5,13 @@ import Sidebar from "./components/sidebar";
 import MapContainer from "./components/mapContainer";
 import { PLACES } from "./resource/places";
 import { FourSquareAPI } from "./endpoint/FourSquareAPI";
+import { useAlert } from 'react-alert'
 
 
 
 export class App extends Component {
+	 alert = useAlert();
+
    
    constructor(props) {
 		super(props);
@@ -23,11 +26,15 @@ export class App extends Component {
 		this.filterMap = this.filterMap.bind(this);
 		this.clearFilter = this.clearFilter.bind(this);
 
-
-
 	}
+
+
+
+
 	componentDidMount() {
 	 this.initializeFoursquarePictures();
+	 alert.show("ABC");
+
 	}
 
 	initializeFoursquarePictures()
@@ -54,7 +61,7 @@ export class App extends Component {
 			});
 			console.log("PLACE",this.state.markers[0]);
 			
-				});
+				})
 			
 
 		console.log("PLACES WITH URL", this.state.markers);
@@ -111,12 +118,14 @@ export class App extends Component {
 	render() {
 		return (
 			<div>
+				
 				<Header handleChangeFilter={this.handleChangeFilter} openNav = {this.openNav} markers={this.state.markers}/>
 				<Sidebar filterMap  = {this.filterMap}  closeNav = {this.openNav} 
 				cssClass = {this.state.cssClass}  clearFilter = {this.clearFilter} />
 				
-				<MapContainer markers={this.state.markers} 
+				<MapContainer  markers={this.state.markers} 
 					  />
+
 			</div>
 		);
 	}

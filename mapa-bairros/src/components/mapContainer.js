@@ -2,19 +2,34 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 
 export class MapContainer extends Component {
-	state = {
-		showingInfoWindows: false,
-		activeMarker: {},
-		selectedPlace: {}
-	};
+	
+
+	constructor(props) {
+		super(props);
+console.log("PROPS QUE CHEGAM NO CONTAINER", props);
+		this.state = {
+			showingInfoWindows: false,
+			activeMarker: {},
+			selectedPlace: {}
+		};
+	}
+	
 
 	
 	onMarkerClick = (props, marker, e) =>
+	{
+		console.log("SELECIONADO!", props );
+		console.log("SELECIONADO MARKER!", marker );
+		//console.log("THIS PROPS CONTAINER", this.props);
+
+
 		this.setState({
 			selectedPlace: props,
 			activeMarker: marker,
 			showingInfoWindow: true
 		});
+
+	}
 
 	onClose = props => {
 		if (this.state.showingInfoWindow) {
@@ -43,6 +58,7 @@ export class MapContainer extends Component {
 							lng: place.longitude
 						}}
 						name={place.label}
+						pictureUrl = {place.pictureUrl}
 						onClick={this.onMarkerClick}
 					/>
 					
@@ -56,7 +72,7 @@ export class MapContainer extends Component {
 					<div>
 						<h4>{this.state.selectedPlace.name}</h4>
 			<img className ="picture" src= {this.state.selectedPlace.pictureUrl} 
-			alt="Legenda da Imagem" height="200" width="250">
+			alt="Legenda da Imagem" height="200" width="220">
             </img>
 
 					</div>
