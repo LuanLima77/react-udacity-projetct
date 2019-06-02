@@ -12,7 +12,6 @@ export class FourSquareAPI {
 
     return fetch(requestUrl)
       .then(response => response.json())
-      .catch(error => console.log("Erro ao recuperar imagens do local!"))
   }
 
   static buildPictureUrl(venue)
