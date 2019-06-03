@@ -9,8 +9,6 @@ import { FourSquareAPI } from "./endpoint/FourSquareAPI";
 import Simplert from 'react-simplert'
 
 
-
-
 export class App extends Component {
 
 
