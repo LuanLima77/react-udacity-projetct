@@ -9,7 +9,7 @@ export default class Header extends Component {
 
 	render() {
 		return (
-			<div className="jumbotron" id="header">
+			<div className="jumbotron" id="header" role="heading">
             	<button className="openBtn" onClick={() => this.openNav()}>
 					☰ Locais
 				</button>
