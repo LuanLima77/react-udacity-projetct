@@ -11,7 +11,7 @@ export default class Sidebar extends Component {
 
 	render() {
 		return (
-			<div className="wrapper">
+			<div className="wrapper" role="navigation">
 
 				<nav className= {this.props.cssClass}>
 					<div className="sidebar-header">
@@ -19,7 +19,7 @@ export default class Sidebar extends Component {
 							        className="close close-btn" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>		
-						<h3 className="sidebar-title">Principais Atrações</h3>
+						<h3 tabIndex= "0" className="sidebar-title">Principais Atrações</h3>
 					</div>
 
 					<ul className="list-unstyled components sidebar-content">

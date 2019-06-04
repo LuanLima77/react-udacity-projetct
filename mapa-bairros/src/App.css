@@ -63,13 +63,22 @@
  color: #535c68;
 }
 
+.container-info
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .picture
 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  position: relative;
-  left: 0;
-  margin: 5%;
-
+  margin-bottom: 10px;
+  margin-top: 10px;
+  
+}
+.place-info
+{
+  width: 100%;
 }
 .sidebar
 {
@@ -137,6 +146,10 @@ Toggle que controla a exibicao do sidebar
   background-color: #95afc0;
 }
 
+.info-label
+{
+  font-weight: bold;
+}
 
 
 #mapContainer

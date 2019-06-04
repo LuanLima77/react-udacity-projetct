@@ -3,8 +3,12 @@ export default class Place
      latitude;
      longitude;
      foursquareVenueId;
+     category;
      label;
-     pictureUrl
+     pictureUrl;
+     formatedAddress;
+     facebookUserName;
+     contact;
 
      constructor(foursquareVenueId,latitude, longitude, label)
      {

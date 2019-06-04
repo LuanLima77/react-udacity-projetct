@@ -57,8 +57,15 @@ export class App extends Component {
 			if (data.response) {
 				var venue = data.response.venue;
 				console.log("VENUE FROM API", venue);
+				console.log("CATEGORY", venue.categories[0].name);
+				console.log("TELLPHONE:", venue.contact.formattedPhone);
+				console.log("FACEBOOK:", venue.contact.facebookUsername);
+
 				var photoUrl = FourSquareAPI.buildPictureUrl(venue);
 				markersModified[0].pictureUrl = photoUrl;
+				markersModified[0].category = venue.categories[0].name;
+				markersModified[0].contact = venue.contact.formattedPhone;
+				markersModified[0].facebookUsername = "/" + venue.contact.facebookUsername;
 				this.setState({
 					markers: markersModified
 				});

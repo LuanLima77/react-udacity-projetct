@@ -13,8 +13,8 @@ export default class Header extends Component {
             	<button className="openBtn" onClick={() => this.openNav()}>
 					☰ Locais
 				</button>
-				<h1 className="header-title">Mapa de Botafogo</h1>
-				<p className="text">
+				<h1 className="header-title" tabIndex="0">Mapa de Botafogo</h1>
+				<p className="text" tabIndex ="0">
 					Um mapa completo com as principais atrações do bairro Botafogo, no Rio
 					de Janeiro
 				</p>
