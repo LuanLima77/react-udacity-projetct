@@ -7,7 +7,7 @@ export default class Place
      label;
      pictureUrl;
      formatedAddress;
-     facebookUserName;
+     facebookUsername;
      contact;
 
      constructor(foursquareVenueId,latitude, longitude, label)

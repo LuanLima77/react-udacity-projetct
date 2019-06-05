@@ -69,6 +69,9 @@
   flex-direction: column;
   align-items: center;
 }
+/**
+Div que exibe a imagem do local
+*/
 .picture
 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -125,7 +128,6 @@ Toggle que controla a exibicao do sidebar
 }
 
 
-
 .openBtn {
   font-size: 20px;
   cursor: pointer;
@@ -159,18 +161,11 @@ Toggle que controla a exibicao do sidebar
   left: 25%;
 }
 
-#fakeMap
-{
-  width: 75%;
-  left: 25%;
-  top: 20%;
-  height: 80%;
-  position: absolute;
-  background-color: yellow;
-}
 
 
-
+/**
+O menu vem fechado por default em dispositivos mobile e aberto em telas maiores.
+*/
 @media screen and (max-width: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 14px;}

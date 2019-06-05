@@ -78,12 +78,17 @@ export class MapContainer extends Component {
 						/>
 						<div className="place-info">
 							<p><span className="info-label">Categoria: </span> 
-							  {this.state.selectedPlace.category}</p>
+							  {this.state.selectedPlace.category ? this.state.selectedPlace.category : ' -'}
+
+							  </p>
 							<p><span className="info-label">Facebook: </span>
-							{this.state.selectedPlace.facebookUsername}
+							{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.facebookUsername : ' -'}
+
 							 </p>
 							<p><span className="info-label">Contato: </span> 
-							{this.state.selectedPlace.contact}
+							
+							{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.formattedPhone : ' -'}
+							
 							</p>
 						</div>
 					</div>

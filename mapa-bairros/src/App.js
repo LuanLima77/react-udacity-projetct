@@ -6,12 +6,9 @@ import MapContainer from "./components/mapContainer";
 import { PLACES } from "./resource/places";
 import { FourSquareAPI } from "./endpoint/FourSquareAPI";
 
-import Simplert from 'react-simplert'
-
+import Simplert from "react-simplert";
 
 export class App extends Component {
-
-
 	constructor(props) {
 		super(props);
 
@@ -20,41 +17,36 @@ export class App extends Component {
 			markers: PLACES,
 			showingInfoWindow: false,
 			showAlert: false,
-			typeAlert: "error",
-
+			typeAlert: "error"
 		};
 		this.openNav = this.openNav.bind(this);
 		this.handleChangeFilter = this.handleChangeFilter.bind(this);
 		this.filterMap = this.filterMap.bind(this);
 		this.clearFilter = this.clearFilter.bind(this);
-
-
 	}
-
 
 	componentDidMount() {
 		this.initializeFoursquarePictures();
-
-
-
 	}
 
 	initializeFoursquarePictures() {
-		
-		let markersModified = Object.assign([], this.state.markers); 
+		let markersModified = Object.assign([], this.state.markers);
 
 		markersModified.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
 				console.log("VENUE FROM API", venue);
 
-        var venue = data.response.venue;
-        var photoUrl = FourSquareAPI.buildPictureUrl(venue);
-		place.pictureUrl = photoUrl;
-		place.category = venue.categories[0].name;
-		place.contact = venue.contact.formattedPhone;
-		place.facebookUsername = "/" + venue.contact.facebookUsername;
-		console.log("PLACE",place);
-        
+				var venue = data.response.venue;
+				if (venue) {
+				var photoUrl = FourSquareAPI.buildPictureUrl(venue);
+				place.pictureUrl = photoUrl;
+				
+					place.category = venue.categories[0].name;
+
+					place.contact = venue.contact.formattedPhone;
+					place.facebookUsername = "/" + venue.contact.facebookUsername;
+				}
+				console.log("PLACE", place);
 			});
 		});
 
@@ -62,7 +54,6 @@ export class App extends Component {
 			markers: markersModified
 		});
 
-		
 		/** 
 		var markersModified = this.state.markers;
 		FourSquareAPI.getPicturesByVenueId(markersModified[0].foursquareVenueId)
@@ -100,60 +91,74 @@ export class App extends Component {
 		console.log("PLACES WITH URL", this.state.markers);
 	}
 
-
-
+	/**
+	 * Recebe o evento onChange da busca e filtra o mapa em tela a partir do termo informado.
+	 * @param {OnChange do input de busca} event
+	 */
 	handleChangeFilter(event) {
-
 		var filter = event.target.value;
 		if (filter.length) {
-			var filteredMarkers = PLACES.filter(marker => marker.label.includes(filter));
+			var filteredMarkers = PLACES.filter(marker =>
+				marker.label.includes(filter)
+			);
 			this.setState({ markers: filteredMarkers });
 		} else {
 			this.setState({ markers: PLACES });
 		}
 	}
 
-
-
+	/**
+	 * Filtra o mapa a partir do menu lateral, deixando apenas o marcador filtrado em tela.
+	 * @param {termo filtrado} term
+	 */
 	filterMap(term) {
 		if (term) {
 			var filteredMarker = PLACES.filter(marker => marker.label.includes(term));
 			console.log("MARCADOR Q FICA...", filteredMarker);
-			this.setState({ markers: filteredMarker, activeMarker: filteredMarker[0], showingInfoWindow: true });
+			this.setState({
+				markers: filteredMarker,
+				activeMarker: filteredMarker[0],
+				showingInfoWindow: true
+			});
 
 			console.log(this.state);
-
-
 		}
 	}
 
-
+	/**
+	 * Abre o menu lateral expansivel
+	 */
 	openNav() {
 		if (this.state.cssClass === "sidebar") {
-			this.setState({ cssClass: 'sidebar openSidebar' });
-
+			this.setState({ cssClass: "sidebar openSidebar" });
 		} else {
-			this.setState({ cssClass: 'sidebar' });
-
+			this.setState({ cssClass: "sidebar" });
 		}
-
 	}
 
+	/**
+	 * Retorna todos os marcadores em tela
+	 */
 	clearFilter() {
 		this.setState({ markers: PLACES });
-
 	}
 
 	render() {
 		return (
 			<div>
-
-				<Header handleChangeFilter={this.handleChangeFilter} openNav={this.openNav} markers={this.state.markers} />
-				<Sidebar filterMap={this.filterMap} closeNav={this.openNav}
-					cssClass={this.state.cssClass} clearFilter={this.clearFilter} />
-
-				<MapContainer markers={this.state.markers}
+				<Header
+					handleChangeFilter={this.handleChangeFilter}
+					openNav={this.openNav}
+					markers={this.state.markers}
 				/>
+				<Sidebar
+					filterMap={this.filterMap}
+					closeNav={this.openNav}
+					cssClass={this.state.cssClass}
+					clearFilter={this.clearFilter}
+				/>
+
+				<MapContainer markers={this.state.markers} />
 
 				<Simplert
 					showSimplert={this.state.showAlert}
@@ -161,7 +166,6 @@ export class App extends Component {
 					title={this.state.titleAlert}
 					message={this.state.messageAlert}
 				/>
-
 			</div>
 		);
 	}
