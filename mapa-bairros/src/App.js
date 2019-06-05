@@ -40,17 +40,30 @@ export class App extends Component {
 	}
 
 	initializeFoursquarePictures() {
-		/** 
-		this.state.markers.forEach(place => {
+		
+		let markersModified = Object.assign([], this.state.markers); 
+
+		markersModified.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
+				console.log("VENUE FROM API", venue);
+
         var venue = data.response.venue;
         var photoUrl = FourSquareAPI.buildPictureUrl(venue);
 		place.pictureUrl = photoUrl;
+		place.category = venue.categories[0].name;
+		place.contact = venue.contact.formattedPhone;
+		place.facebookUsername = "/" + venue.contact.facebookUsername;
 		console.log("PLACE",place);
         
 			});
 		});
-		*/
+
+		this.setState({
+			markers: markersModified
+		});
+
+		
+		/** 
 		var markersModified = this.state.markers;
 		FourSquareAPI.getPicturesByVenueId(markersModified[0].foursquareVenueId)
 		.then(data => {
@@ -72,7 +85,6 @@ export class App extends Component {
 				console.log("PLACE", this.state.markers[0]);
 			}
 
-
 		})
 			.catch( error => 
 				{
@@ -83,7 +95,7 @@ export class App extends Component {
 					})
 				});
 		;
-
+*/
 
 		console.log("PLACES WITH URL", this.state.markers);
 	}
