@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import {CUSTOM_MAP_STYLE}  from "../resource/customMapStyle";
 
 export class MapContainer extends Component {
 	constructor(props) {
@@ -9,6 +10,10 @@ export class MapContainer extends Component {
 			activeMarker: {},
 			selectedPlace: {}
 		};
+
+		this.mapStyle = CUSTOM_MAP_STYLE;
+		
+		
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -30,8 +35,9 @@ export class MapContainer extends Component {
 	};
 	render() {
 		return (
-			<Map
+			<Map 
 				id="mapContainer"
+				styles=  {this.mapStyle}
 				google={this.props.google}
 				zoom={15}
 				initialCenter={{
