@@ -34,7 +34,6 @@ export class App extends Component {
 
 		markersModified.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
-				console.log("VENUE FROM API", venue);
 
 				var venue = data.response.venue;
 				if (venue) {
@@ -45,8 +44,14 @@ export class App extends Component {
 
 					place.contact = venue.contact.formattedPhone;
 					place.facebookUsername = "/" + venue.contact.facebookUsername;
+				}else
+				{
+					this.setState({
+						showAlert: true,
+						titleAlert: "Erro !",
+						messageAlert: "Não foi possível recuperar as ilustrações dos locais no mapa."
+					})
 				}
-				console.log("PLACE", place);
 			});
 		});
 
@@ -54,41 +59,7 @@ export class App extends Component {
 			markers: markersModified
 		});
 
-		/** 
-		var markersModified = this.state.markers;
-		FourSquareAPI.getPicturesByVenueId(markersModified[0].foursquareVenueId)
-		.then(data => {
-			if (data.response) {
-				var venue = data.response.venue;
-				console.log("VENUE FROM API", venue);
-				console.log("CATEGORY", venue.categories[0].name);
-				console.log("TELLPHONE:", venue.contact.formattedPhone);
-				console.log("FACEBOOK:", venue.contact.facebookUsername);
-
-				var photoUrl = FourSquareAPI.buildPictureUrl(venue);
-				markersModified[0].pictureUrl = photoUrl;
-				markersModified[0].category = venue.categories[0].name;
-				markersModified[0].contact = venue.contact.formattedPhone;
-				markersModified[0].facebookUsername = "/" + venue.contact.facebookUsername;
-				this.setState({
-					markers: markersModified
-				});
-				console.log("PLACE", this.state.markers[0]);
-			}
-
-		})
-			.catch( error => 
-				{
-					this.setState({
-						showAlert: true,
-						titleAlert: "Erro !",
-						messageAlert: "Não foi possível recuperar as ilustrações dos locais representados."
-					})
-				});
-		;
-*/
-
-		console.log("PLACES WITH URL", this.state.markers);
+		
 	}
 
 	/**
@@ -114,14 +85,12 @@ export class App extends Component {
 	filterMap(term) {
 		if (term) {
 			var filteredMarker = PLACES.filter(marker => marker.label.includes(term));
-			console.log("MARCADOR Q FICA...", filteredMarker);
 			this.setState({
 				markers: filteredMarker,
 				activeMarker: filteredMarker[0],
 				showingInfoWindow: true
 			});
 
-			console.log(this.state);
 		}
 	}
 

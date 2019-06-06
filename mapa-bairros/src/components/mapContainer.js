@@ -4,7 +4,6 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 export class MapContainer extends Component {
 	constructor(props) {
 		super(props);
-		console.log("PROPS QUE CHEGAM NO CONTAINER", props);
 		this.state = {
 			showingInfoWindows: false,
 			activeMarker: {},
@@ -13,9 +12,6 @@ export class MapContainer extends Component {
 	}
 
 	onMarkerClick = (props, marker, e) => {
-		console.log("SELECIONADO!", props);
-		console.log("SELECIONADO MARKER!", marker);
-		//console.log("THIS PROPS CONTAINER", this.props);
 
 		this.setState({
 			selectedPlace: props,
