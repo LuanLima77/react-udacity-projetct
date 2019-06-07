@@ -6,13 +6,12 @@ export class MapContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showingInfoWindows: false,
+			showingInfoWindow: false, 
 			activeMarker: {},
 			selectedPlace: {}
 		};
 
 		this.mapStyle = CUSTOM_MAP_STYLE;
-
 
 	}
 
@@ -24,6 +23,37 @@ export class MapContainer extends Component {
 			showingInfoWindow: true
 		});
 	};
+
+	verifyAnimation(place) 
+	{
+		if(this.state.activeMarker)
+		{
+			if(place.label == this.state.activeMarker.name)
+			return this.props.google.maps.Animation.BOUNCE;	
+		}
+		
+	}
+
+	verifyIcon(place) 
+	{ 
+		var icon = {
+			scaledSize: new this.props.google.maps.Size(20, 30), // scaled size
+			url  : 'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|eb4d4b|40|_|%E2%80%A2' // url
+
+		};
+		if(this.state.activeMarker)
+		{
+			if(place.label == this.state.activeMarker.name)
+			{
+				icon.url  = 'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|f9ca24|40|_|%E2%80%A2'; // url
+			}
+		}
+		
+
+		return icon;
+		
+	}
+
 
 	onClose = props => {
 		if (this.state.showingInfoWindow) {
@@ -46,8 +76,11 @@ export class MapContainer extends Component {
 				}}
 			>
 				{this.props.markers.map((place, i) => (
-					<Marker
+					<Marker ref = {`marker${place.foursquareVenueId}`}
+					
 						key={place.foursquareVenueId}
+						animation= {this.verifyAnimation(place)}
+						icon = {this.verifyIcon(place)}
 						position={{
 							lat: place.latitude,
 							lng: place.longitude
@@ -61,6 +94,7 @@ export class MapContainer extends Component {
 
 						onClick={this.onMarkerClick}
 					/>
+
 				))}
 
 				<InfoWindow

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, ReactDOM } from "react";
 import "./App.css";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
@@ -6,11 +6,13 @@ import MapContainer from "./components/mapContainer";
 import { PLACES } from "./resource/places";
 import { FourSquareAPI } from "./endpoint/FourSquareAPI";
 
+
 import Simplert from "react-simplert";
 
 export class App extends Component {
 	constructor(props) {
 		super(props);
+
 
 		this.state = {
 			cssClass: "sidebar",
@@ -26,12 +28,13 @@ export class App extends Component {
 	}
 
 	componentDidMount() {
+		console.log("opa");
 		this.initializeFoursquarePictures();
 	}
 
 	initializeFoursquarePictures() {
 		let markersModified = Object.assign([], this.state.markers);
-
+		let showError = false;
 		markersModified.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
 
@@ -46,6 +49,12 @@ export class App extends Component {
 					place.contact = venue.contact.formattedPhone;
 					place.facebookUsername = "/" + venue.contact.facebookUsername;
 				} else {
+
+					showError = true;
+					
+				}
+				if(showError)
+				{
 					this.setState({
 						showAlert: true,
 						titleAlert: "Erro !",
