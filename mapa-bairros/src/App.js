@@ -13,11 +13,12 @@ export class App extends Component {
 	constructor(props) {
 		super(props);
 
-
 		this.state = {
 			cssClass: "sidebar",
 			markers: PLACES,
 			showingInfoWindow: false,
+			activeMarker: {},
+			selectedPlace: {},
 			showAlert: false,
 			typeAlert: "error"
 		};
@@ -28,13 +29,12 @@ export class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log("opa");
 		this.initializeFoursquarePictures();
 	}
 
 	initializeFoursquarePictures() {
 		let markersModified = Object.assign([], this.state.markers);
-		let showError = false;
+		let displayErrorAlert = false;
 		markersModified.forEach(place => {
 			FourSquareAPI.getPicturesByVenueId(place.foursquareVenueId).then(data => {
 
@@ -50,10 +50,10 @@ export class App extends Component {
 					place.facebookUsername = "/" + venue.contact.facebookUsername;
 				} else {
 
-					showError = true;
+					displayErrorAlert = true;
 					
 				}
-				if(showError)
+				if(displayErrorAlert)
 				{
 					this.setState({
 						showAlert: true,
@@ -72,6 +72,13 @@ export class App extends Component {
 	}
 
 	/**
+	 * Recupera as referêncais dos marcadores
+	 */
+	getRefs = (refs) => {
+		this.setState({refsTeste: refs})
+	  }
+
+	/**
 	 * Recebe o evento onChange da busca e filtra o mapa em tela a partir do termo informado.
 	 * @param {OnChange do input de busca} event
 	 */
@@ -81,9 +88,9 @@ export class App extends Component {
 			var filteredMarkers = PLACES.filter(marker =>
 				marker.label.includes(filter)
 			);
-			this.setState({ markers: filteredMarkers });
+			this.setState({ markers: filteredMarkers, showAlert : false });
 		} else {
-			this.setState({ markers: PLACES });
+			this.setState({ markers: PLACES, showAlert : false });
 		}
 	}
 
@@ -118,8 +125,19 @@ export class App extends Component {
 	 * Retorna todos os marcadores em tela
 	 */
 	clearFilter() {
-		this.setState({ markers: PLACES });
+		this.setState({ markers: PLACES, showAlert : false });
 	}
+
+	/**Exibe a janela com detalhes do local */
+	onMarkerClick = (props, marker, e) => {
+
+		this.setState({
+			selectedPlace: props,
+			activeMarker: marker,
+			showingInfoWindow: true
+		});
+	};
+*/
 
 	render() {
 		return (
@@ -134,9 +152,10 @@ export class App extends Component {
 					closeNav={this.openNav}
 					cssClass={this.state.cssClass}
 					clearFilter={this.clearFilter}
+					getRefs = {this.state.getRefs}
 				/>
 
-				<MapContainer markers={this.state.markers} />
+				<MapContainer markers={this.state.markers} getRefs = {this.state.getRefs} />
 
 				<Simplert
 					showSimplert={this.state.showAlert}

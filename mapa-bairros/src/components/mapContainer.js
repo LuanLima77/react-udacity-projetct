@@ -5,16 +5,15 @@ import { CUSTOM_MAP_STYLE } from "../resource/customMapStyle";
 export class MapContainer extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			showingInfoWindow: false, 
-			activeMarker: {},
-			selectedPlace: {}
-		};
-
 		this.mapStyle = CUSTOM_MAP_STYLE;
 
 	}
+	componentDidMount() {
+		this.props.getRefs(this.refs);
 
+	  }
+
+	  /** 
 	onMarkerClick = (props, marker, e) => {
 
 		this.setState({
@@ -23,7 +22,7 @@ export class MapContainer extends Component {
 			showingInfoWindow: true
 		});
 	};
-
+*/
 	verifyAnimation(place) 
 	{
 		if(this.state.activeMarker)
@@ -92,7 +91,7 @@ export class MapContainer extends Component {
 						facebookUsername={place.facebookUsername}
 						contact={place.contact}
 
-						onClick={this.onMarkerClick}
+						onClick={this.props.onMarkerClick}
 					/>
 
 				))}
