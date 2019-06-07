@@ -37,15 +37,15 @@ export class App extends Component {
 
 				var venue = data.response.venue;
 				if (venue) {
-				var photoUrl = FourSquareAPI.buildPictureUrl(venue);
-				place.pictureUrl = photoUrl;
-				
+					console.log("VENUE",venue.contact);
+					var photoUrl = FourSquareAPI.buildPictureUrl(venue);
+					place.pictureUrl = photoUrl;
+
 					place.category = venue.categories[0].name;
 
 					place.contact = venue.contact.formattedPhone;
 					place.facebookUsername = "/" + venue.contact.facebookUsername;
-				}else
-				{
+				} else {
 					this.setState({
 						showAlert: true,
 						titleAlert: "Erro !",
@@ -59,7 +59,7 @@ export class App extends Component {
 			markers: markersModified
 		});
 
-		
+
 	}
 
 	/**

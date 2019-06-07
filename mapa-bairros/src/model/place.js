@@ -7,15 +7,16 @@ export default class Place
      label;
      pictureUrl;
      formatedAddress;
-     facebookUsername;
+     facebookUserName;
      contact;
 
-     constructor(foursquareVenueId,latitude, longitude, label)
+     constructor(foursquareVenueId,latitude, longitude, label, description)
      {
       this.foursquareVenueId = foursquareVenueId
        this.latitude = latitude;
        this.longitude = longitude;
        this.label = label;  
+       this.description = description;
      }
 
 }

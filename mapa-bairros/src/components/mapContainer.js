@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
-import {CUSTOM_MAP_STYLE}  from "../resource/customMapStyle";
+import { CUSTOM_MAP_STYLE } from "../resource/customMapStyle";
 
 export class MapContainer extends Component {
 	constructor(props) {
@@ -12,8 +12,8 @@ export class MapContainer extends Component {
 		};
 
 		this.mapStyle = CUSTOM_MAP_STYLE;
-		
-		
+
+
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -35,9 +35,9 @@ export class MapContainer extends Component {
 	};
 	render() {
 		return (
-			<Map 
+			<Map
 				id="mapContainer"
-				styles=  {this.mapStyle}
+				styles={this.mapStyle}
 				google={this.props.google}
 				zoom={15}
 				initialCenter={{
@@ -53,6 +53,7 @@ export class MapContainer extends Component {
 							lng: place.longitude
 						}}
 						name={place.label}
+						description={place.description}
 						pictureUrl={place.pictureUrl}
 						category={place.category}
 						facebookUsername={place.facebookUsername}
@@ -67,30 +68,34 @@ export class MapContainer extends Component {
 					visible={this.state.showingInfoWindow}
 					onClose={this.onClose}
 				>
-					<div className = "container-info">
-						<div className = "header-info">
-						<h4>{this.state.selectedPlace.name}</h4>
+					<div className="container-info">
+						<div className="header-info">
+							<h4>{this.state.selectedPlace.name}</h4>
 						</div>
 						<img
 							className="picture"
 							src={this.state.selectedPlace.pictureUrl}
-							alt="Legenda da Imagem"
+							alt={this.state.selectedPlace.label}
 							height="200"
 							width="220"
 						/>
 						<div className="place-info">
-							<p><span className="info-label">Categoria: </span> 
-							  {this.state.selectedPlace.category ? this.state.selectedPlace.category : ' -'}
+							<p><span className="info-label">Categoria: </span>
+								{this.state.selectedPlace.category ? this.state.selectedPlace.category : ' Não identificada'}
 
-							  </p>
+							</p>
 							<p><span className="info-label">Facebook: </span>
-							{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.facebookUsername : ' -'}
+								{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.facebookUsername : ' Não informado'}
 
-							 </p>
-							<p><span className="info-label">Contato: </span> 
-							
-							{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.formattedPhone : ' -'}
-							
+							</p>
+							<p><span className="info-label">Contato: </span>
+
+								{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.formattedPhone : ' Não informado'}
+
+							</p>
+
+							<p>
+								{this.state.selectedPlace.description}
 							</p>
 						</div>
 					</div>
