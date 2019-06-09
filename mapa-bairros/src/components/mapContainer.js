@@ -7,12 +7,16 @@ export class MapContainer extends Component {
 		super(props);
 		this.mapStyle = CUSTOM_MAP_STYLE;
 
+
 	}
 	componentDidMount() {
-		this.props.getRefs(this.refs);
+		this.props.setRefs(this.refs);
+		console.log("PROPES", this.props);
 
-	  }
 
+	}
+
+	
 	  /** 
 	onMarkerClick = (props, marker, e) => {
 
@@ -25,9 +29,9 @@ export class MapContainer extends Component {
 */
 	verifyAnimation(place) 
 	{
-		if(this.state.activeMarker)
+		if(this.props.state.activeMarker)
 		{
-			if(place.label == this.state.activeMarker.name)
+			if(place.label == this.props.state.activeMarker.name)
 			return this.props.google.maps.Animation.BOUNCE;	
 		}
 		
@@ -40,9 +44,9 @@ export class MapContainer extends Component {
 			url  : 'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|eb4d4b|40|_|%E2%80%A2' // url
 
 		};
-		if(this.state.activeMarker)
+		if(this.props.state.activeMarker)
 		{
-			if(place.label == this.state.activeMarker.name)
+			if(place.label == this.props.state.activeMarker.name)
 			{
 				icon.url  = 'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|f9ca24|40|_|%E2%80%A2'; // url
 			}
@@ -55,13 +59,14 @@ export class MapContainer extends Component {
 
 
 	onClose = props => {
-		if (this.state.showingInfoWindow) {
+		if (this.props.state.showingInfoWindow) {
 			this.setState({
 				showingInfoWindow: false,
 				activeMarker: null
 			});
 		}
 	};
+
 	render() {
 		return (
 			<Map
@@ -97,38 +102,38 @@ export class MapContainer extends Component {
 				))}
 
 				<InfoWindow
-					marker={this.state.activeMarker}
-					visible={this.state.showingInfoWindow}
+					marker={this.props.state.activeMarker}
+					visible={this.props.state.showingInfoWindow}
 					onClose={this.onClose}
 				>
 					<div className="container-info">
 						<div className="header-info">
-							<h4>{this.state.selectedPlace.name}</h4>
+							<h4>{this.props.state.selectedPlace.name}</h4>
 						</div>
 						<img
 							className="picture"
-							src={this.state.selectedPlace.pictureUrl}
-							alt={this.state.selectedPlace.label}
+							src={this.props.state.selectedPlace.pictureUrl}
+							alt={this.props.state.selectedPlace.label}
 							height="200"
 							width="220"
 						/>
 						<div className="place-info">
 							<p><span className="info-label">Categoria: </span>
-								{this.state.selectedPlace.category ? this.state.selectedPlace.category : ' Não identificada'}
+								{this.props.state.selectedPlace.category ? this.props.state.selectedPlace.category : ' Não identificada'}
 
 							</p>
 							<p><span className="info-label">Facebook: </span>
-								{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.facebookUsername : ' Não informado'}
+								{this.props.state.selectedPlace.contact ? this.props.state.selectedPlace.contact.facebookUsername : ' Não informado'}
 
 							</p>
 							<p><span className="info-label">Contato: </span>
 
-								{this.state.selectedPlace.contact ? this.state.selectedPlace.contact.formattedPhone : ' Não informado'}
+								{this.props.state.selectedPlace.contact ? this.props.state.selectedPlace.contact.formattedPhone : ' Não informado'}
 
 							</p>
 
 							<p>
-								{this.state.selectedPlace.description}
+								{this.props.state.selectedPlace.description}
 							</p>
 						</div>
 					</div>

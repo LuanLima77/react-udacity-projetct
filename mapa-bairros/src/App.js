@@ -74,8 +74,8 @@ export class App extends Component {
 	/**
 	 * Recupera as referêncais dos marcadores
 	 */
-	getRefs = (refs) => {
-		this.setState({refsTeste: refs})
+	setRefs = (refs) => {
+		this.setState({childRefs: refs})
 	  }
 
 	/**
@@ -98,6 +98,7 @@ export class App extends Component {
 	 * Filtra o mapa a partir do menu lateral, deixando apenas o marcador filtrado em tela.
 	 * @param {termo filtrado} term
 	 */
+	//NAO USADO?
 	filterMap(term) {
 		if (term) {
 			var filteredMarker = PLACES.filter(marker => marker.label.includes(term));
@@ -130,6 +131,7 @@ export class App extends Component {
 
 	/**Exibe a janela com detalhes do local */
 	onMarkerClick = (props, marker, e) => {
+		console.log("MARKER CLICK");
 
 		this.setState({
 			selectedPlace: props,
@@ -137,7 +139,7 @@ export class App extends Component {
 			showingInfoWindow: true
 		});
 	};
-*/
+
 
 	render() {
 		return (
@@ -152,10 +154,11 @@ export class App extends Component {
 					closeNav={this.openNav}
 					cssClass={this.state.cssClass}
 					clearFilter={this.clearFilter}
-					getRefs = {this.state.getRefs}
+					onMarkerClick = {this.onMarkerClick}
+					state = {this.state}
 				/>
 
-				<MapContainer markers={this.state.markers} getRefs = {this.state.getRefs} />
+				<MapContainer markers={this.state.markers} setRefs = {this.setRefs} state = {this.state}  onMarkerClick = {this.onMarkerClick}/>
 
 				<Simplert
 					showSimplert={this.state.showAlert}

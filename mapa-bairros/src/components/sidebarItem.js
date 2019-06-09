@@ -4,6 +4,7 @@ export default class SidebarItem extends Component {
 	//                onClick={() => this.props.filterMap(this.props.label)}
 
 	render() {
+		console.log("this.props sidbaritem", this.props.state.childRefs);
 		return (
 			<li className="sidebarLink">
 				<a
@@ -11,8 +12,8 @@ export default class SidebarItem extends Component {
 					href="#"
 					onClick={() =>
 						this.props.onMarkerClick(
-							this.props.refsTeste[this.props.venueID].props,
-							this.props.refsTeste[this.props.venueID].marker
+							this.props.state.childRefs[`marker${this.props.venueId}`].props,
+							this.props.state.childRefs[`marker${this.props.venueId}`].marker
 						)
 					}
 				>

@@ -27,9 +27,12 @@ export default class Sidebar extends Component {
 
 						{	PLACES.map((place, i) => (
 						<SidebarItem
+						state={this.props.state}
 						key = {place.foursquareVenueId}
+						venueId = {place.foursquareVenueId}
 						label= {place.label}
-						filterMap= {this.props.filterMap}
+						onMarkerClick = {this.props.onMarkerClick}
+
 						
 					/>
 					
