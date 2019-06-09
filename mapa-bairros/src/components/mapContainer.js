@@ -11,7 +11,6 @@ export class MapContainer extends Component {
 	}
 	componentDidMount() {
 		this.props.setRefs(this.refs);
-		console.log("PROPES", this.props);
 
 
 	}

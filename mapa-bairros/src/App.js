@@ -40,7 +40,6 @@ export class App extends Component {
 
 				var venue = data.response.venue;
 				if (venue) {
-					console.log("VENUE",venue.contact);
 					var photoUrl = FourSquareAPI.buildPictureUrl(venue);
 					place.pictureUrl = photoUrl;
 
@@ -51,10 +50,9 @@ export class App extends Component {
 				} else {
 
 					displayErrorAlert = true;
-					
+
 				}
-				if(displayErrorAlert)
-				{
+				if (displayErrorAlert) {
 					this.setState({
 						showAlert: true,
 						titleAlert: "Erro !",
@@ -75,8 +73,8 @@ export class App extends Component {
 	 * Recupera as referêncais dos marcadores
 	 */
 	setRefs = (refs) => {
-		this.setState({childRefs: refs})
-	  }
+		this.setState({ childRefs: refs })
+	}
 
 	/**
 	 * Recebe o evento onChange da busca e filtra o mapa em tela a partir do termo informado.
@@ -88,9 +86,9 @@ export class App extends Component {
 			var filteredMarkers = PLACES.filter(marker =>
 				marker.label.includes(filter)
 			);
-			this.setState({ markers: filteredMarkers, showAlert : false });
+			this.setState({ markers: filteredMarkers, showAlert: false });
 		} else {
-			this.setState({ markers: PLACES, showAlert : false });
+			this.setState({ markers: PLACES, showAlert: false });
 		}
 	}
 
@@ -126,13 +124,12 @@ export class App extends Component {
 	 * Retorna todos os marcadores em tela
 	 */
 	clearFilter() {
-		this.setState({ markers: PLACES, showAlert : false });
+		this.setState({ markers: PLACES, showAlert: false });
 	}
 
 	/**Exibe a janela com detalhes do local */
 	onMarkerClick = (props, marker, e) => {
-		console.log("MARKER CLICK");
-
+			
 		this.setState({
 			selectedPlace: props,
 			activeMarker: marker,
@@ -154,11 +151,11 @@ export class App extends Component {
 					closeNav={this.openNav}
 					cssClass={this.state.cssClass}
 					clearFilter={this.clearFilter}
-					onMarkerClick = {this.onMarkerClick}
-					state = {this.state}
+					onMarkerClick={this.onMarkerClick}
+					state={this.state}
 				/>
 
-				<MapContainer markers={this.state.markers} setRefs = {this.setRefs} state = {this.state}  onMarkerClick = {this.onMarkerClick}/>
+				<MapContainer markers={this.state.markers} setRefs={this.setRefs} state={this.state} onMarkerClick={this.onMarkerClick} />
 
 				<Simplert
 					showSimplert={this.state.showAlert}
